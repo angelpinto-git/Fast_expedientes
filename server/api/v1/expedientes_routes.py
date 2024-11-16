@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Path
+from fastapi import APIRouter, Path, Query
 
 router = APIRouter(prefix='/expedientes')
 
@@ -12,7 +12,8 @@ router = APIRouter(prefix='/expedientes')
     },
     description='Retorna una lista paginada con los expedientes. Si no hay expedientes para mostrar, retorna lista vacía.'
     )  # POST /expedientes
-async def get_list() -> list:
+async def get_list(limit: Annotated[int, Query(ge=1, le=1000)] = 10, offset: Annotated[int, Query(ge=1, le=1000)] = 0) -> list:
+    print(f'Paginado limite {limit} y offset {offset}')
     return []
 
 @router.post(
