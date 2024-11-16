@@ -1,0 +1,6 @@
+# Env
+venv/* # venv se pone así también para indicar que es toda la carpeta
+env/*  # env
+
+# Python files
+**/__pycache__/*
