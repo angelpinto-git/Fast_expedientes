@@ -1,4 +1,4 @@
-# Fast-Projects
+# Fast-Expedientes
 Proyecto principal del módulo de FastAPI del curso de "Python+FastAPI"
 
 ## Dependencias
