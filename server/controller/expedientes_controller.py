@@ -1,21 +1,18 @@
 from typing import List
 
-from fastapi import HTTPException
 
 from server.schemas.expedientes_schemas import NewRecordRequest, RecordResponse, RecordRequest
-from server.exceptions import BaseHTTPException, InternalServerError, NotFound
-
+from server.exceptions import BaseHTTPException, InternalServerError
+from server.service import ExpedientesService
 
 class ExpedientesController:
     def __init__(self):
-        pass # TODO: referencia a servicio
+        self.service = ExpedientesService()
 
     
     def create(self, new_record: NewRecordRequest) -> RecordResponse:
         try:
-            # TODO: llamar a la capa de servicio para que gestione la acción correspondiente
-            # Retornar data de ejemplo
-            return RecordResponse(id=1, **new_record.model_dump())
+            return self.service.create(new_record)
         except BaseHTTPException as ex:
              # TODO: implementar logging
              raise ex
@@ -25,9 +22,7 @@ class ExpedientesController:
 
     def get_list(self, limit: int, offset: int) -> List[RecordResponse]:
         try:
-            # TODO: llamar a la capa de servicio para que gestione la acción correspondiente
-            # Código de ejemplo
-            return []
+            return self.service.get_list(limit, offset)
         except BaseHTTPException as ex:
              # TODO: implementar logging
              raise ex
@@ -35,13 +30,11 @@ class ExpedientesController:
             # TODO log: Error no contemplado en ExpedientesController.create
             raise InternalServerError()
 
-        
+ 
 
     def get_by_id(self, id: int) -> RecordResponse:
         try:
-            # TODO: llamar a la capa de servicio para que gestione la acción correspondiente
-            # Ejemplo de error
-            raise NotFound(f'Proyecto #{id} no encontrado')
+            return self.service.get_by_id(id)
         except BaseHTTPException as ex:
              # TODO: implementar logging
              raise ex
@@ -53,9 +46,7 @@ class ExpedientesController:
 
     def update(self, id: int, new_data: RecordRequest) -> RecordResponse:
         try:
-            # TODO: llamar a la capa de servicio para que gestione la acción correspondiente
-            # Ejemplo
-            return RecordResponse(id=id, **new_data.model_dump())
+            return self.service.update(id, new_data)
         except BaseHTTPException as ex:
              # TODO: implementar logging
              raise ex
@@ -67,8 +58,7 @@ class ExpedientesController:
 
     def delete(self, id: int) -> None:
         try:
-            # TODO: llamar a la capa de servicio para que gestione la acción correspondiente
-            return
+            self.delete(id)
         except BaseHTTPException as ex:
              # TODO: implementar logging
              raise ex
