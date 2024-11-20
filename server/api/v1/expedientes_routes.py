@@ -37,7 +37,7 @@ async def get_list(limit: Annotated[int, Query(ge=1, le=1000)] = 10, offset: Ann
 
 
 @router.get(
-    '/{ID}',
+    '/{expedienteId}',
     status_code=200,
     responses={
         200: {'description': 'Expediente encontrado'},
@@ -50,7 +50,7 @@ async def get_by_ID(id: Annotated[int, Path(ge=1)]) -> RecordResponse:
     return controller.get_by_id(id)
 
 @router.patch(
-    '/{ID}',
+    '/{expedienteId}',
     status_code=200,
     responses={
         200: {'description': 'Expediente encontrado'},
@@ -63,7 +63,7 @@ async def updaate(id: Annotated[int, Path(ge=1)], record: RecordRequest) -> Reco
     return controller.update(id, record)
 
 @router.delete(
-    '/{ID}',
+    '/{expedienteId}',
     status_code=200,
     responses={
         200: {'description': 'Expediente eliminado'},
