@@ -4,18 +4,18 @@ from pydantic import BaseModel
 
 
 class NewRecordRequest(BaseModel) :
-    title: str
+    cover: str
     status: str = 'new'
     description: str = ''
 
 class RecordRequest(BaseModel) :
-    title: str | None = None
+    cover : str | None = None
     status: str | None = None 
     description: str | None = None
 
 class RecordResponse(BaseModel) :
-    id: int
-    title: str
+    record_id: int
+    cover: str
     status: str = 'new'
     description: str = ''
     created_at: datetime = datetime.now()
