@@ -1,9 +1,12 @@
 # Env
-venv/* # venv se pone así también para indicar que es toda la carpeta
-env/*  # env
+venv
+env
 
 # Python files
 **/__pycache__/*
 
 # Secrets
 .env
+
+# Logs
+logs

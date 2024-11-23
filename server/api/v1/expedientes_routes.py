@@ -59,7 +59,7 @@ async def get_by_ID(id: Annotated[int, Path(ge=1)]) -> RecordResponse:
     },
     description='Actualiza un expediente con la data de Body Param. Falla si el ID no existe.'
     )  # PATCH /expedientes/{ID}
-async def updaate(id: Annotated[int, Path(ge=1)], record: RecordRequest) -> RecordResponse:
+async def update(id: Annotated[int, Path(ge=1)], record: RecordRequest) -> RecordResponse:
     return controller.update(id, record)
 
 @router.delete(
